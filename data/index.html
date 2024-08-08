@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP32 Web Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="topnav">
+    <a class="active" href="/index">Home</a>
+    <a href="/config">Config</a>
+  </div>
+  
+  <div style="padding-left:16px">
+    <h2>Flow Meter Status</h2>
+  </div>
+  <div class="flex-container">
+  <div class="card">
+    <div class="container">
+      <h4><b>Volume (m<sup>3</sup>)</b></h4> 
+      <p id="vol">1000</p> 
+    </div>
+  </div>
+  
+  <div class="card">
+    <div class="container">
+      <h4><b>Rate (m<sup>3</sup>/h)</b></h4> 
+      <p id="rate1">1000</p> 
+    </div>
+  </div>
+  <div class="card">
+    <div class="container">
+      <h4><b>Rate (l/m)</b></h4> 
+      <p id="rate2">1000</p> 
+    </div>
+  </div>
+  <div class="card">
+    <div class="container">
+      <h4><b>Battry</b></h4> 
+      <p id="bat">1000</p> 
+    </div>
+  </div>
+</div>
+</body>
+</html>
+
+<script>
+  const url ="/getData"
+  async function bacaSensor() {
+    let response = await fetch(url);
+    if (response.status === 200) {
+        let data = await response.text();
+        dtJSON = JSON.parse(data)
+        document.getElementById('vol').innerHTML=dtJSON.vl2;
+        document.getElementById('rate1').innerHTML=dtJSON.fr2;
+        document.getElementById('rate2').innerHTML=dtJSON.fr1;
+        document.getElementById('bat').innerHTML=dtJSON.bat;
+       }
+}
+bacaSensor()
+  setInterval(bacaSensor,3000)
+</script>

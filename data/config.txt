@@ -1,0 +1,5 @@
+{
+"ssid": "Flash2",
+"pass": "qwertyui",
+"intv":1
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP32 Web Server</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class="topnav">
+    <a href="/index">Home</a>
+    <a class="active" href="/config">Config</a>
+  </div>
+  
+  <div style="padding-left:16px">
+    <h2> Configuration</h2>
+  </div>
+  <div class="div-form">
+    <form action="/saveConfig" method="post">
+      %config%
+        <!-- <label for="ssid">SSID</label>
+        <input type="text" id="ssid" name="firstname" placeholder="Your name..">
+        <label for="pass">PASS</label>
+        <input type="password" id="pass" name="pass">
+        <label for="intv">Sending Interval</label>
+        <input type="number" id="intv" name="intv"> -->
+      <input type="submit" value="Save">
+    </form>
+</div>
+</body>
+</html>
